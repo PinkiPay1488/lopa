@@ -7,6 +7,40 @@
 </head>
 <body>
     <h1>Marketplace</h1>
+    <h2>Filter Items</h2>
+<label for="category-filter">Category:</label>
+<input type="text" id="category-filter"><br><br>
+
+<label for="price-min">Min Price:</label>
+<input type="number" id="price-min">
+
+<label for="price-max">Max Price:</label>
+<input type="number" id="price-max"><br><br>
+
+<button onclick="filterItems()">Filter</button>
+<script>
+    function filterItems() {
+        let categoryFilter = document.getElementById('category-filter').value.toLowerCase();
+        let priceMin = document.getElementById('price-min').value;
+        let priceMax = document.getElementById('price-max').value;
+
+        let table = document.querySelector('table');
+        let rows = table.rows;
+
+        for (let i = 1; i < rows.length; i++) {
+            let category = rows[i].cells[1].textContent.toLowerCase();
+            let price = parseFloat(rows[i].cells[3].textContent);
+
+            if ((category.includes(categoryFilter) || categoryFilter === '') &&
+                (price >= priceMin || priceMin === '') &&
+                (price <= priceMax || priceMax === '')) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+</script>
     <table>
         <tr>
             <th>Item</th>
