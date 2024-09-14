@@ -1,100 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market</title>
+    <title>Рынок и Сделки</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Marketplace</h1>
-    <h2>Filter Items</h2>
-<label for="category-filter">Category:</label>
-<input type="text" id="category-filter"><br><br>
+    <header>
+        <h1>Рынок и Сделки</h1>
+        <nav>
+            <ul>
+                <li><a href="currency-converter.html">Калькулятор</a></li>
+                <li><a href="index.html#currencies">Курсы Валют</a></li>
+                <li><a href="index.html#banks">Банки</a></li>
+                <li><a href="market.html">Рынок и Сделки</a></li>
+                <li><a href="index.html#karma">Доска Кармы</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<label for="price-min">Min Price:</label>
-<input type="number" id="price-min">
+    <main>
+        <h2>Торговая Площадка</h2>
+        <table>
+            <tr>
+                <th>Товар</th>
+                <th>Категория</th>
+                <th>Количество</th>
+                <th>Цена (EdenCoin)</th>
+                <th>Продавец</th>
+            </tr>
+            <!-- Здесь будут добавляться товары -->
+        </table>
 
-<label for="price-max">Max Price:</label>
-<input type="number" id="price-max"><br><br>
+        <h2>Добавить Товар</h2>
+        <form id="add-item-form">
+            <label for="item">Товар:</label>
+            <input type="text" id="item" name="item" required><br><br>
+            
+            <label for="category">Категория:</label>
+            <input type="text" id="category" name="category" required><br><br>
+            
+            <label for="quantity">Количество:</label>
+            <input type="number" id="quantity" name="quantity" required><br><br>
+            
+            <label for="price">Цена (EdenCoin):</label>
+            <input type="number" id="price" name="price" required><br><br>
+            
+            <label for="seller">Продавец:</label>
+            <input type="text" id="seller" name="seller" required><br><br>
 
-<button onclick="filterItems()">Filter</button>
-<script>
-    function filterItems() {
-        let categoryFilter = document.getElementById('category-filter').value.toLowerCase();
-        let priceMin = document.getElementById('price-min').value;
-        let priceMax = document.getElementById('price-max').value;
+            <input type="submit" value="Добавить Товар">
+        </form>
 
-        let table = document.querySelector('table');
-        let rows = table.rows;
+        <h2>Фильтры</h2>
+        <label for="category-filter">Категория:</label>
+        <input type="text" id="category-filter"><br><br>
 
-        for (let i = 1; i < rows.length; i++) {
-            let category = rows[i].cells[1].textContent.toLowerCase();
-            let price = parseFloat(rows[i].cells[3].textContent);
+        <label for="price-min">Мин. Цена:</label>
+        <input type="number" id="price-min">
 
-            if ((category.includes(categoryFilter) || categoryFilter === '') &&
-                (price >= priceMin || priceMin === '') &&
-                (price <= priceMax || priceMax === '')) {
-                rows[i].style.display = '';
-            } else {
-                rows[i].style.display = 'none';
-            }
-        }
-    }
-</script>
-    <table>
-        <tr>
-            <th>Item</th>
-            <th>Category</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Seller</th>
-        </tr>
-        <!-- Здесь будут добавляться товары -->
-    </table>
-    <h2>Add an Item for Sale</h2>
-<form id="add-item-form">
-    <label for="item">Item:</label>
-    <input type="text" id="item" name="item" required><br><br>
-    
-    <label for="category">Category:</label>
-    <input type="text" id="category" name="category" required><br><br>
-    
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" required><br><br>
-    
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="price" required><br><br>
-    
-    <label for="seller">Seller:</label>
-    <input type="text" id="seller" name="seller" required><br><br>
+        <label for="price-max">Макс. Цена:</label>
+        <input type="number" id="price-max"><br><br>
 
-    <input type="submit" value="Add Item">
-</form>
-<script>
-    document.getElementById('add-item-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        let item = document.getElementById('item').value;
-        let category = document.getElementById('category').value;
-        let quantity = document.getElementById('quantity').value;
-        let price = document.getElementById('price').value;
-        let seller = document.getElementById('seller').value;
-
-        let table = document.querySelector('table');
-        let newRow = table.insertRow();
-
-        newRow.innerHTML = `
-            <td>${item}</td>
-            <td>${category}</td>
-            <td>${quantity}</td>
-            <td>${price}</td>
-            <td>${seller}</td>
-        `;
-
-        // Очищаем форму после добавления товара
-        document.getElementById('add-item-form').reset();
-    });
-</script>
-
+        <button onclick="filterItems()">Применить Фильтры</button>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
