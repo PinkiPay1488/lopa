@@ -1,47 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .converter { width: 300px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; }
-        input, select { width: 100%; margin: 10px 0; padding: 8px; }
-    </style>
-</head> 
+    <title>Калькулятор валют</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <div class="converter">
-        <h2>Currency Converter: EdenCoin</h2>
-        <input type="number" id="amount" placeholder="Enter amount">
-        <select id="fromCurrency">
-            <option value="EdenCoin">EdenCoin</option>
-            <option value="Mithril">Mithril</option>
-            <option value="Tilkalk">Tilkalk</option>
+    <header>
+        <h1>Калькулятор обмена валют</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="market.html">Рынок</a></li>
+                <li><a href="banks.html">Банки</a></li>
+                <li><a href="karma.html">Доска кармы</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Конвертируйте ваши монеты</h2>
+        <label for="amount">Сумма:</label>
+        <input type="number" id="amount" name="amount" value="1">
+
+        <label for="currencyFrom">Из валюты:</label>
+        <select id="currencyFrom" name="currencyFrom">
+            <option value="eden">EdenCoin</option>
+            <option value="diamond">Алмазные монеты</option>
+            <option value="gold">Золотые монеты</option>
+            <option value="silver">Серебряные монеты</option>
+            <option value="copper">Медные монеты</option>
         </select>
-        <select id="toCurrency">
-            <option value="EdenCoin">EdenCoin</option>
-            <option value="Mithril">Mithril</option>
-            <option value="Tilkalk">Tilkalk</option>
+
+        <label for="currencyTo">В валюту:</label>
+        <select id="currencyTo" name="currencyTo">
+            <option value="eden">EdenCoin</option>
+            <option value="diamond">Алмазные монеты</option>
+            <option value="gold">Золотые монеты</option>
+            <option value="silver">Серебряные монеты</option>
+            <option value="copper">Медные монеты</option>
         </select>
-        <button onclick="convert()">Convert</button>
+
+        <button onclick="convertCurrency()">Конвертировать</button>
+
         <p id="result"></p>
-    </div>
 
-    <script>
-        const rates = {
-            EdenCoin: 1,
-            Mithril: 10, // 1 Mithril = 10 EdenCoins
-            Tilkalk: 100 // 1 Tilkalk = 100 EdenCoins
-        };
+        <script>
+            function convertCurrency() {
+                var amount = document.getElementById("amount").value;
+                var currencyFrom = document.getElementById("currencyFrom").value;
+                var currencyTo = document.getElementById("currencyTo").value;
 
-        function convert() {
-            let amount = document.getElementById('amount').value;
-            let fromCurrency = document.getElementById('fromCurrency').value;
-            let toCurrency = document.getElementById('toCurrency').value;
-            let result = (amount * rates[fromCurrency]) / rates[toCurrency];
-            document.getElementById('result').innerText = `${amount} ${fromCurrency} = ${result.toFixed(2)} ${toCurrency}`;
-        }
-    </script>
+                // Курс валют относительно EdenCoin
+                var rates = {
+                    eden: 1,
+                    diamond: 10,
+                    gold: 100,
+                    silver: 1000,
+                    copper: 10000
+                };
+
+                // Конвертируем сумму в EdenCoin, а затем в выбранную валюту
+                var amountInEden = amount / rates[currencyFrom];
+                var convertedAmount = amountInEden * rates[currencyTo];
+
+                document.getElementById("result").innerText = amount + " " + currencyFrom + " = " + convertedAmount + " " + currencyTo;
+            }
+        </script>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
+

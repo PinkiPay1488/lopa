@@ -3,68 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рынок и Сделки</title>
+    <title>Рынок и сделки</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Рынок и Сделки</h1>
+        <h1>Рынок и торговля</h1>
         <nav>
             <ul>
+                <li><a href="index.html">Главная</a></li>
                 <li><a href="currency-converter.html">Калькулятор</a></li>
-                <li><a href="index.html#currencies">Курсы Валют</a></li>
-                <li><a href="index.html#banks">Банки</a></li>
-                <li><a href="market.html">Рынок и Сделки</a></li>
-                <li><a href="index.html#karma">Доска Кармы</a></li>
+                <li><a href="banks.html">Банки</a></li>
+                <li><a href="karma.html">Доска кармы</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h2>Торговая Площадка</h2>
+        <h2>Доступные товары и сделки</h2>
+        <p>Вы можете выставлять свои товары и заключать сделки с другими игроками.</p>
+
         <table>
             <tr>
                 <th>Товар</th>
-                <th>Категория</th>
-                <th>Количество</th>
-                <th>Цена (EdenCoin)</th>
                 <th>Продавец</th>
+                <th>Цена</th>
+                <th>Действие</th>
             </tr>
-            <!-- Здесь будут добавляться товары -->
+            <tr>
+                <td>Мифрил</td>
+                <td>Игрок1</td>
+                <td>100 EdenCoin</td>
+                <td><button>Купить</button></td>
+            </tr>
+            <!-- Add more items here -->
         </table>
-
-        <h2>Добавить Товар</h2>
-        <form id="add-item-form">
-            <label for="item">Товар:</label>
-            <input type="text" id="item" name="item" required><br><br>
-            
-            <label for="category">Категория:</label>
-            <input type="text" id="category" name="category" required><br><br>
-            
-            <label for="quantity">Количество:</label>
-            <input type="number" id="quantity" name="quantity" required><br><br>
-            
-            <label for="price">Цена (EdenCoin):</label>
-            <input type="number" id="price" name="price" required><br><br>
-            
-            <label for="seller">Продавец:</label>
-            <input type="text" id="seller" name="seller" required><br><br>
-
-            <input type="submit" value="Добавить Товар">
-        </form>
-
-        <h2>Фильтры</h2>
-        <label for="category-filter">Категория:</label>
-        <input type="text" id="category-filter"><br><br>
-
-        <label for="price-min">Мин. Цена:</label>
-        <input type="number" id="price-min">
-
-        <label for="price-max">Макс. Цена:</label>
-        <input type="number" id="price-max"><br><br>
-
-        <button onclick="filterItems()">Применить Фильтры</button>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
